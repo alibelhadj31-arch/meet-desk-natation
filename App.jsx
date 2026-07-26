@@ -15,7 +15,46 @@ const EPREUVES = [
 ];
 
 const CATEGORIES = ['Poussins', 'Benjamins', 'Minimes', 'Cadets', 'Juniors', 'Seniors'];
+function calculerAge(dateNaissance) {
+  if (!dateNaissance) return null;
+  const [y, m, d] = dateNaissance.split('-').map(Number);
+  const today = new Date();
+  let age = today.getFullYear() - y;
+  const anniversairePasse = (today.getMonth() + 1 > m) || (today.getMonth() + 1 === m && today.getDate() >= d);
+  if (!anniversairePasse) age -= 1;
+  return age;
+}
 
+function calculerCategorie(dateNaissance) {
+  const age = calculerAge(dateNaissance);
+  if (age === null) return '';
+  if (age <= 7) return 'Poussins';
+  if (age <= 9) return 'Benjamins';
+  if (age <= 11) return 'Minimes';
+  if (age <= 13) return 'Cadets';
+  if (age <= 17) return 'Juniors';
+  return 'Seniors';
+}
+function calculerAge(dateNaissance) {
+  if (!dateNaissance) return null;
+  const [y, m, d] = dateNaissance.split('-').map(Number);
+  const today = new Date();
+  let age = today.getFullYear() - y;
+  const anniversairePasse = (today.getMonth() + 1 > m) || (today.getMonth() + 1 === m && today.getDate() >= d);
+  if (!anniversairePasse) age -= 1;
+  return age;
+}
+
+function calculerCategorie(dateNaissance) {
+  const age = calculerAge(dateNaissance);
+  if (age === null) return '';
+  if (age <= 7) return 'Poussins';
+  if (age <= 9) return 'Benjamins';
+  if (age <= 11) return 'Minimes';
+  if (age <= 13) return 'Cadets';
+  if (age <= 17) return 'Juniors';
+  return 'Seniors';
+}
 const NAVY = '#0B2545';
 const ORANGE = '#F4732A';
 const AQUA = '#E8F4F8';
