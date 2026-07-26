@@ -1,13 +1,12 @@
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // Lecture publique : tout le monde peut consulter inscriptions, séries,
-    // résultats et classements sans se connecter.
-    // Écriture réservée : seul un compte connecté (l'administrateur du club)
-    // peut créer, modifier ou supprimer des données.
-    match /{document=**} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-  }
-}
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meet Deck — Academy Sportive des Jeunes Talents</title>
+  </head>
+  <body style="margin:0;">
+    <div id="root"></div>
+    <script type="module" src="/main.jsx"></script>
+  </body>
+</html>
