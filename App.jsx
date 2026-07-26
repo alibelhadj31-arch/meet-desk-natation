@@ -377,7 +377,7 @@ function Inscriptions({ swimmers, entries, meeting, showToast, isAdmin }) {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
             <Field label="Prénom" value={form.prenom} onChange={v => setForm(f => ({ ...f, prenom: v }))} />
             <Field label="Nom" value={form.nom} onChange={v => setForm(f => ({ ...f, nom: v }))} />
-            <Field label="Date de naissance" type="date" value={form.naissance} onChange={v => setForm(f => ({ ...f, naissance: v }))} />
+            <DateNaissanceField value={form.naissance} onChange={v => setForm(f => ({ ...f, naissance: v }))} />
             <div>
               <label style={{ fontSize: 12, color: '#5C7186', fontWeight: 600, display: 'block', marginBottom: 6 }}>Catégorie</label>
               <select value={form.categorie} onChange={e => setForm(f => ({ ...f, categorie: e.target.value }))}
