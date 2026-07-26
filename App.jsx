@@ -742,7 +742,32 @@ function Card({ children, style }) {
     </div>
   );
 }
-
+function DateNaissanceField({ value, onChange }) {
+  const [y, m, d] = value ? value.split('-') : ['', '', ''];
+  const years = Array.from({ length: 80 }, (_, i) => String(new Date().getFullYear() - i));
+  const months = Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, '0'));
+  const days = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, '0'));
+  const update = (ny, nm, nd) => { if (ny && nm && nd) onChange(`${ny}-${nm}-${nd}`); };
+  return (
+    <div>
+      <label style={{ fontSize: 12, color: '#5C7186', fontWeight: 600, display: 'block', marginBottom: 6 }}>Date de naissance</label>
+      <div style={{ display: 'flex', gap: 8 }}>
+        <select value={d} onChange={e => update(y, m, e.target.value)} style={{ padding: '9px 6px', borderRadius: 8, border: '1px solid #D7DFE4', fontSize: 14, flex: 1 }}>
+          <option value="">Jour</option>
+          {days.map(day => <option key={day} value={day}>{day}</option>)}
+        </select>
+        <select value={m} onChange={e => update(y, e.target.value, d)} style={{ padding: '9px 6px', borderRadius: 8, border: '1px solid #D7DFE4', fontSize: 14, flex: 1 }}>
+          <option value="">Mois</option>
+          {months.map(mo => <option key={mo} value={mo}>{mo}</option>)}
+        </select>
+        <select value={y} onChange={e => update(e.target.value, m, d)} style={{ padding: '9px 6px', borderRadius: 8, border: '1px solid #D7DFE4', fontSize: 14, flex: 1 }}>
+          <option value="">Année</option>
+          {years.map(yr => <option key={yr} value={yr}>{yr}</option>)}
+        </select>
+      </div>
+    </div>
+  );
+}
 function Field({ label, value, onChange, type = 'text' }) {
   return (
     <div>
