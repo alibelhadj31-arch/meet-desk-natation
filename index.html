@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Lecture publique : tout le monde peut consulter inscriptions, séries,
+    // résultats et classements sans se connecter.
+    // Écriture réservée : seul un compte connecté (l'administrateur du club)
+    // peut créer, modifier ou supprimer des données.
+    match /{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
